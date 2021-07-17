@@ -9,8 +9,11 @@ Coding with Visual Studio Code with plugin PlateformeIO
   Background Home All App
 	<img alt="FactoryDemo Background Home All App" src="https://zupimages.net/up/21/28/bhd5.jpg" />
 </div>
+
 # Installing and Compiling the firmware
+
 ### First, you must install the necessary tools and prepare the IDE environment
+
 - Download (and unzip) this repository
 - Download and Install Visual Studio Code https://code.visualstudio.com/
 - Install the PlatformIO Extension
