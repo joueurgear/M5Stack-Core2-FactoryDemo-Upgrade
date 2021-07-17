@@ -20,6 +20,8 @@ Coding with Visual Studio Code with plugin PlateformeIO
 - Install ESP32 Platform on PlatformIO
 - Open the MultiApp Project folder on PlatformIO
 - Click the BUILD button !
+- To access the App, Click on M5Stack the Internal logo
+<div align="center"><img alt="Apps" src="https://zupimages.net/up/21/28/qjcx.jpg" /></div>
 
 # M5Stack Core2 Factory Demo Upgrade
 
