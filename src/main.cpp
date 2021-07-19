@@ -24,6 +24,7 @@ extern const unsigned char TimerAppImage[59165];
 extern const unsigned char SettingAppImage[50771];
 extern const unsigned char NewApp[64204];
 extern const unsigned char Apps[62993];
+extern const unsigned char Games[59827];
 extern const unsigned char bibiSig[8820];
 
 extern const unsigned char image_rect_0006[1394];
@@ -2003,7 +2004,56 @@ void AppBluetooth()
 }
 void AppGame()
 {
+    Disbuff.pushSprite(0,0);
+    Disbuff.drawJpg(Games,65449,0,0,320,240);
+    Disbuff.pushSprite(0,0);
+    TouchPoint_t pos = M5.Touch.getPressPoint();
+    
+    M5.Lcd.setFreeFont(FSB9);
+    M5.Lcd.setTextColor(Disbuff.color565(0,0,0));
+    M5.Lcd.setTextDatum(CC_DATUM);
+    M5.Lcd.setTextFont(2);
+    M5.Lcd.drawString("Games",160,74);
+    while(1)
+        {
+            pos = M5.Touch.getPressPoint();
+            HotZone Image( 20,191, 64,235);
+            HotZone Wifi( 79,191,123,235);
+            HotZone Timer(138,191,182,235);
+            HotZone Sleep(197,191,241,235);
+            HotZone Setting(256,191,300,235);
+            HotZone Home(250,0,294,44);
 
+            if( Home.inHotZone(pos))
+            {   
+                goto endImage; break;
+            }
+            if( Image.inHotZone(pos))
+            {   
+                AppImage(); break;
+            }
+            if( Wifi.inHotZone(pos))
+            {   
+                AppWifi(); break;
+            }
+            if( Timer.inHotZone(pos))
+            {   
+                AppTimer(); break;
+            }
+            if( Sleep.inHotZone(pos))
+            {   
+                APPSleep(); break;
+            }
+            if( Setting.inHotZone(pos))
+            {   
+                AppSetting(); break;
+            }
+        }
+        endImage:
+        Disbuff.drawJpg(CoreMainImage,87169,0,0,320,240,0,0);
+        Disbuff.pushSprite(0,0);
+        menubuff.deleteSprite();
+        sytState.power = kPOWER_MAX;
 }
 void AppMusic()
 {
@@ -2063,7 +2113,7 @@ void AppMusic()
 void App()
 {
     Disbuff.pushSprite(0,0);
-    Disbuff.drawJpg(Apps,62993,0,0,320,240);
+    Disbuff.drawJpg(Apps,65449,0,0,320,240);
     Disbuff.pushSprite(0,0);
     TouchPoint_t pos = M5.Touch.getPressPoint();
     
