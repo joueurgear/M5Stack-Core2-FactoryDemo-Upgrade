@@ -1930,6 +1930,8 @@ void AppSetting()
     sytState.power = kPOWER_MAX;
 
 }
+    BluetoothSerial SerialBT;
+
 void AppBluetooth()
 {
     Serial.println("Bluetooth");
@@ -1944,8 +1946,18 @@ void AppBluetooth()
     M5.Lcd.setTextDatum(CC_DATUM);
     M5.Lcd.setTextFont(2);
     M5.Lcd.drawString("Bluetooth",160,74);
+
+    SerialBT.begin("ESP32test"); //Bluetooth device name
+    Serial.println("The device started, now you can pair it with bluetooth!");
     while(1)
         {
+            if (Serial.available()) {
+                SerialBT.write(Serial.read());
+            }
+            if (SerialBT.available()) {
+                Serial.write(SerialBT.read());
+            }
+            delay(20);
             pos = M5.Touch.getPressPoint();
             HotZone Image( 20,191, 64,235);
             HotZone Wifi( 79,191,123,235);
@@ -1979,6 +1991,10 @@ void AppBluetooth()
             }
         }
         endImage:
+        if (!SerialBT.connected()){
+            Serial.print("Deconnection BT");
+            SerialBT.end();
+        }
         Disbuff.drawJpg(CoreMainImage,87169,0,0,320,240,0,0);
         Disbuff.pushSprite(0,0);
         menubuff.deleteSprite();
@@ -1987,11 +2003,7 @@ void AppBluetooth()
 }
 void AppGame()
 {
-    std::fstream fs;
-    while(1)
-    {
-        Serial.println("Game FlapiBird");
-    }
+
 }
 void AppMusic()
 {
